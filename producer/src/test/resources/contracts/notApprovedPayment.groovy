@@ -3,7 +3,7 @@ import org.springframework.cloud.contract.spec.Contract
 Contract.make {
     request {
         method 'GET'
-        url '/v1/payments/10/status'
+        urlPath $(regex('/v1/payments/41/status'))
     }
     response {
         status 412

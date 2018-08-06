@@ -14,7 +14,7 @@ public class PaymentRestController {
     @GetMapping(value="v1/payments/{id}/status", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<PaymentStatus> getPaymentStatus(@PathVariable Integer id) {
 
-        if (id > 9) {
+        if (id > 40) {
             return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED)
                     .body(new PaymentStatus(false));
         } else {

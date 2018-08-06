@@ -9,6 +9,7 @@ import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRun
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.retry.policy.ExceptionClassifierRetryPolicy;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -32,12 +33,12 @@ public class ValidateContractTest {
 
     @Test
     public void validatePaymentNotApprovedContract() {
-        try {
-            restTemplate.getForEntity(getUrl("v1/payments/10/status"), String.class);
-        } catch (HttpClientErrorException ex) {
-            assertThat(ex.getStatusCode(), equalTo(HttpStatus.PRECONDITION_FAILED));
-            assertThat(ex.getResponseBodyAsString(), equalTo( "{\"approved\":false}"));
-        }
+
+        ResponseEntity response =  restTemplate.getForEntity(getUrl("v1/payments/41/status"), String.class);
+
+        assertThat(response.getStatusCode(), equalTo(HttpStatus.PRECONDITION_FAILED));
+        assertThat(response.getBody(), equalTo( "{\"approved\":false}"));
+
     }
 
     private String getUrl(String path){
