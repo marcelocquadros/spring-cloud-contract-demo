@@ -34,7 +34,7 @@ public class ValidateContractTest {
     @Test
     public void validatePaymentNotApprovedContract() {
 
-        ResponseEntity response =  restTemplate.getForEntity(getUrl("v1/payments/10/status"), String.class);
+        ResponseEntity response =  restTemplate.getForEntity(getUrl("v1/payments/100/status"), String.class);
 
         assertThat(response.getStatusCode(), equalTo(HttpStatus.PRECONDITION_FAILED));
         assertThat(response.getBody(), equalTo( "{\"approved\":false}"));

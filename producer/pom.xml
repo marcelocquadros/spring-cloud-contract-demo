@@ -69,6 +69,8 @@
 				<configuration>
 					<baseClassForTests>br.com.example.producer.MockMvcTest</baseClassForTests>
 				</configuration>
+
+
 			</plugin>
 		</plugins>
 	</build>
