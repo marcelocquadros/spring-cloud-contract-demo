@@ -20,20 +20,20 @@ public class RabbitMQConfig {
     public static final String QUEUE = "product.created";
 
     @Bean
-    TopicExchange exchange() {
+    TopicExchange productExchange() {
         return  new TopicExchange(EXCHANGE);
     }
 
 
     @Bean
-    Queue queueLongTime() {
+    Queue productQueue() {
         return new Queue(QUEUE);
     }
 
 
     @Bean
-    Binding bindingQueue(Queue queueLongTime, TopicExchange exchange) {
-        return BindingBuilder.bind(queueLongTime).to(exchange).with(ROUTE_KEY);
+    Binding bindingQueue(Queue productQueue, TopicExchange productExchange) {
+        return BindingBuilder.bind(productQueue).to(productExchange).with(ROUTE_KEY);
     }
 
 
